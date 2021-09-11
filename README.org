@@ -70,18 +70,28 @@ spamprotection = "0.1.0"
 
       // You can check if the user is blacklisted or not via this!
 
-      if info.results.attributes.is_blacklisted {
-	println!("This {} is blacklisted due to {} with the {} flag.", info.results.entity_type, info.results.attributes.blacklist_reason.unwrap_or("None".to_string()), info.results.attributes.blacklist_flag.unwrap_or("None".to_string()));
-    } else {
-	println!("This {} is not blacklisted!", info.results.entity_type);
-    }
 
-    // You can also check if the user is a potential spammer or not!
-
-      if info.results.attributes.is_potential_spammer {
-	println!("Beware! This {} is a potential spammer!!", info.results.entity_type);
+      if info::get_bl(&arg) {
+	  println!("This {} is blacklisted due to {} with the {} flag.\n", info::get_type(&arg), info::get_reason(&arg).unwrap_or("None".to_string()), info::get_flag(&arg).unwrap_or("None".to_string()));
+      } else {
+	  println!("This {} is not blacklisted!\n", info::get_type(&arg));
       }
-  }
+
+      // You can also check if the user is a potential scammer or not!
+
+      if info::get_potential(&arg) {
+	  println!("Beware! This {} is a potential spammer!!", info::get_type(&arg));
+      }
+
+    /* You can also alternatively use the full() method in info module
+       This is however tedious and not suggested.
+       info has several fields and subfields, You can check what are they in the src/info/structs/mod.rs
+       The reason .unwrap_or("None".to_string()) would be used as it has error handling and it unwraps the output to print it in a cleaner way.
+    ,*/
+    let info = info::full(&arg);
+
+    println!("{:#?}", info);
+
 #+END_SRC
 
 Check our [[https://github.com/cyberknight777/SpamProtection-rs/tree/master/examples][examples directory]] for more info onto how you can use our library.
