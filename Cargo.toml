@@ -1,0 +1,10 @@
+[package]
+name = "spamprotectionbot-rs"
+version = "0.1.0"
+edition = "2018"
+authors = ["@PeroSar <perosar1111@gmail.com>", "@cyberknight777 <cyberknight755@gmail.com>"]
+
+[dependencies]
+reqwest = { version = "0.11.3", features = ["json"] }
+tokio = { version =  "1.3.0", features = ["rt-multi-thread", "macros"] }
+serde = { version = "1.0.130", features = ["derive"] }
