@@ -2,7 +2,7 @@ mod structs;
 use structs::ApiResp;
 
 #[tokio::main]
-pub async fn full(user: &str) ->  ApiResp {
+pub async fn full<T: std::fmt::Display>(user: T) ->  ApiResp {
     let client = reqwest::Client::new();
     let fmt = format!("https://api.intellivoid.net/spamprotection/v1/lookup?query={}", user);
     let res = client.get(fmt)
