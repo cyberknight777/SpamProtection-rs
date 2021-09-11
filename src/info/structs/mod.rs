@@ -39,6 +39,6 @@ pub struct SpamPredict {
 #[derive(Deserialize, Debug)]
 pub struct ApiResp {
     pub success: bool,
-    pub response_code: i64,
+    pub response_code: i16,
     pub results: Response
 }
