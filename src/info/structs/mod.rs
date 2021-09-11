@@ -8,17 +8,11 @@ pub struct Response {
 }
 
 #[derive(Deserialize)]
-pub enum Any {
-    String,
-    Null,
-}
-
-#[derive(Deserialize)]
 pub struct Attributes {
     pub is_blacklisted: bool,
-    pub blacklist_flag: Any,
-    pub blacklist_reason: Any,
-    pub orignal_private_id: Any,
+    pub blacklist_flag: Option<String>,
+    pub blacklist_reason: Option<String>,
+    pub original_private_id: Option<String>,
     pub is_potential_spammer: bool,
     pub is_operator: bool,
     pub is_agent: bool,
