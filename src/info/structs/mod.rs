@@ -1,13 +1,13 @@
 use serde::Deserialize;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Response {
     pub private_telegram_id: String,
     pub entity_type: String,
     pub attributes: Attributes,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Attributes {
     pub is_blacklisted: bool,
     pub blacklist_flag: Option<String>,
@@ -21,7 +21,7 @@ pub struct Attributes {
     pub is_official: bool,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct ApiResp {
     pub success: bool,
     pub response_code: i64,
