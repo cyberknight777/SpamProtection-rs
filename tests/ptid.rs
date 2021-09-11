@@ -1,4 +1,4 @@
-use spamprotectionbot_rs::info;
+use spamprotection::info;
 
 #[test]
 fn test_ptid() {

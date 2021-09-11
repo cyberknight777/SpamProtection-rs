@@ -1,5 +1,5 @@
 [package]
-name = "spamprotectionbot_rs"
+name = "spamprotection"
 version = "0.1.0"
 edition = "2018"
 authors = ["@PeroSar <perosar1111@gmail.com>", "@cyberknight777 <cyberknight755@gmail.com>"]
