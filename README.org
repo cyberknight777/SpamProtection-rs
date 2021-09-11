@@ -1,0 +1,97 @@
+#+TITLE: SpamProtection-rs
+
+* Table of contents
+:PROPERTIES:
+:TOC:
+:END:
+:CONTENTS:
+- [[#about][About]]
+- [[#supported-rust-version][Supported Rust version]]
+- [[#features][Features]]
+- [[#How to use][How to use]]
+- [[#credits][Credits]]
+- [[#license][License]]
+:END:
+
+* About
+
+SpamProtection-rs is a [[https://rust-lang.org][Rust]] wrapper for [[https://intellivoid.net][Intellivoid]] SpamProtection API which uses the [[https://crates.io/crates/reqwest][Reqwest]] library to make the request, [[https://crates.io/crates/tokio][tokio]] for asynchronous responses and [[https://crates.io/crates/serde][serde]] to parse the json output.
+
+This wrapper was made in focus of speed, reliability and memory safety.
+
+* Supported Rust version
+
+At the time of development we used rustc version 1.52.1. Anything newer than this should work fine with the library unless if there were any syntax breaking changes included in future rust updates in which we will update our code to the latest standards.
+
+* Features
+  
++ =Easy to use=
++ =Looking up userID or username=
+
+* How to use
+
+** To use this library in your project you would need to add the below code to your Cargo.toml
+
+#+BEGIN_SRC toml
+[dependencies]
+spamprotection = "0.1.0"
+#+END_SRC
+
+** Here's an example of how you can use the spamprotection library in your code
+
+#+BEGIN_SRC rust
+  use spamprotection::info;
+  use std::env;
+
+  /* We would need to first to declare the spamprotection library with use declaration.
+     We would also need to declare the env trait from std library as args variable will be collecting the arguments passed to the program.
+  ,*/
+
+  fn main()
+  {
+      /* Here we will need to assign a Vector type to args variable to collect the arguments passed to program.
+	 Then we will need to assign String type to arg variable to parse the arguments passed.
+	 Alternatively you can use the commented code below too if you don't want an argument-based program.
+	 You don't need to add quotes for userID, but you'll need to add quotes if you want to check with username.
+
+	 let info = info::full(123456789);
+
+      ,*/
+      let args: Vec<String> = env::args().collect();
+      let arg: String = args[1].parse().expect("invalid account");
+
+      /* Here's where we will start by declaring the info variable and assign it to the info module in spamprotection library
+	 which calls the full() method with given the arg variable as the value.
+
+	 info has several fields and subfields, in the below example we would be using .results and its subtype .results.attributes.
+	 The reason .unwrap_or("None".to_string()) is being used as it has error handling and it unwraps the output to print it in a cleaner way.
+      ,*/
+      let info = info::full(arg);
+
+      // You can check if the user is blacklisted or not via this!
+
+      if info.results.attributes.is_blacklisted {
+	println!("This {} is blacklisted due to {} with the {} flag.", info.results.entity_type, info.results.attributes.blacklist_reason.unwrap_or("None".to_string()), info.results.attributes.blacklist_flag.unwrap_or("None".to_string()));
+    } else {
+	println!("This {} is not blacklisted!", info.results.entity_type);
+    }
+
+    // You can also check if the user is a potential spammer or not!
+
+      if info.results.attributes.is_potential_spammer {
+	println!("Beware! This {} is a potential spammer!!", info.results.entity_type);
+      }
+  }
+#+END_SRC
+
+Check our [[https://github.com/cyberknight777/SpamProtection-rs/tree/master/examples][examples directory]] for more info onto how you can use our library.
+
+* Credits
+
+This project was inspired by [[https://github.com/intellivoid/intellivoid.spamprotection-go][SpamProtection-Go]].
+
+Thanks to everyone who helped us with this project.
+
+* License
+
+This project is under the [[https://opensource.org/licenses/GPL-3.0][GPL-3.0]] license.
