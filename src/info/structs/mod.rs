@@ -26,14 +26,14 @@ pub struct Attributes {
 
 #[derive(Deserialize, Debug)]
 pub struct LangPredict {
-    pub language: String,
-    pub probability: f64
+    pub language: Option<String>,
+    pub probability: Option<f64>
 }
 
 #[derive(Deserialize, Debug)]
 pub struct SpamPredict {
-    pub ham_prediction: f64,
-    pub spam_prediction: f64
+    pub ham_prediction: Option<f64>,
+    pub spam_prediction: Option<f64>
 }
 
 #[derive(Deserialize, Debug)]
