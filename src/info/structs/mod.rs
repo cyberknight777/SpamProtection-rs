@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Default)]
 pub struct Response {
     pub private_telegram_id: String,
     pub entity_type: String,
@@ -10,7 +10,7 @@ pub struct Response {
     pub last_updated: i128
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Default)]
 pub struct Attributes {
     pub is_blacklisted: bool,
     pub blacklist_flag: Option<String>,
@@ -24,13 +24,13 @@ pub struct Attributes {
     pub is_official: bool,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Default)]
 pub struct LangPredict {
     pub language: Option<String>,
     pub probability: Option<f64>
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Default)]
 pub struct SpamPredict {
     pub ham_prediction: Option<f64>,
     pub spam_prediction: Option<f64>
@@ -38,7 +38,10 @@ pub struct SpamPredict {
 
 #[derive(Deserialize, Debug)]
 pub struct ApiResp {
+    #[serde(default)]
+    pub error: Error,
     pub success: bool,
     pub response_code: i16,
-    pub results: Response
+    #[serde(default)]
+    pub results: Response,
 }
