@@ -19,12 +19,12 @@ fn main()
     }
 	
 	if info::get_bl(&arg) {
-	    println!("This {} is blacklisted due to {} with the {} flag.\n", info::get_type(&arg), info::get_reason(&arg).unwrap_or("None".to_string()), info::get_flag(&arg).unwrap_or("None".to_string()));
+	    println!("This {} is blacklisted due to {} with the {} flag.\n", info::get_type(&arg), info::get_reason(&arg), info::get_flag(&arg));
 	} else {
 	    println!("This {} is not blacklisted!\n", info::get_type(&arg));
 	}	
     if info::get_flag_evade(&arg) {
-	println!("Beware! This {} has an evading flag. This is the original PTID of the person: {}", info::get_type(&arg), info::get_original_ptid(&arg).unwrap_or("None".to_string()));
+	println!("Beware! This {} has an evading flag. This is the original PTID of the person: {}", info::get_type(&arg), info::get_original_ptid(&arg));
     }
     
     if info::get_potential(&arg) {
