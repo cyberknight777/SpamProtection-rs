@@ -166,8 +166,8 @@ pub fn get_lang<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
     return full(user).results.language_prediction.language.unwrap_or("None".to_string())
 }
 
-pub fn get_lang_probability<T: std::fmt::Display + serde::Serialize>(user: T) -> Option<f64> {
-    return full(user).results.language_prediction.probability
+pub fn get_lang_probability<T: std::fmt::Display + serde::Serialize>(user: T) -> f64 {
+    return full(user).results.language_prediction.probability.unwrap_or(0.0)
 }
 
 pub fn get_ptid<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
