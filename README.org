@@ -27,6 +27,13 @@ At the time of development we used rustc version 1.52.1. Anything newer than thi
   
 + =Easy to use=
 + =Looking up userID, PTID or username=
++ =Check if user is blacklisted due to specific flag=
++ =Check if user is a operator=
++ =Check if user is verified=
++ =Check if user is official=
++ =Check if user is a agent=
++ =Spam and ham prediction=
++ =Language prediction with probability=
 
 * How to use
 
