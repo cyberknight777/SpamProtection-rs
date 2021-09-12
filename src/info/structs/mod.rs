@@ -36,6 +36,13 @@ pub struct SpamPredict {
     pub spam_prediction: Option<f64>
 }
 
+#[derive(Deserialize, Debug, Default)]
+pub struct Error {
+    pub error_code: i8,
+    pub r#type: String,
+    pub message: String,
+}
+
 #[derive(Deserialize, Debug)]
 pub struct ApiResp {
     #[serde(default)]
