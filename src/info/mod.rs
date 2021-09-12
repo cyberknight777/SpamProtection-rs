@@ -1,17 +1,14 @@
 mod structs;
 use structs::ApiResp;
 
-#[tokio::main]
-pub async fn full<T: std::fmt::Display + serde::Serialize>(user: T) -> ApiResp {
-    let client = reqwest::Client::new();
+pub fn full<T: std::fmt::Display + serde::Serialize>(user: T) ->  ApiResp {
+    let client = reqwest::blocking::Client::new();
     let response = client.post("https://api.intellivoid.net/spamprotection/v1/lookup")
         .header("User-Agent", "SpamProtectionBot-rs")
         .form(&[("query", user)])
         .send()
-        .await
         .unwrap()
         .json::<ApiResp>()
-        .await
         .unwrap();
     return response
 }

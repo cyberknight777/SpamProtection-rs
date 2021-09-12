@@ -5,6 +5,5 @@ edition = "2018"
 authors = ["@PeroSar <perosar1111@gmail.com>", "@cyberknight777 <cyberknight755@gmail.com>"]
 
 [dependencies]
-reqwest = { version = "0.11.3", features = ["json"] }
-tokio = { version =  "1.11.0", features = ["rt-multi-thread", "macros"] }
+reqwest = { version = "0.11.3", features = ["blocking", "json"] }
 serde = { version = "1.0.130", features = ["derive"] }
