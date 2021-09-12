@@ -166,6 +166,6 @@ pub fn get_lang<T: std::fmt::Display + serde::Serialize>(user: T) ->  Option<Str
     return full(user).results.language_prediction.language
 }
 
-pub fn get_probability<T: std::fmt::Display + serde::Serialize>(user: T) -> Option<f64> {
+pub fn get_lang_probability<T: std::fmt::Display + serde::Serialize>(user: T) -> Option<f64> {
     return full(user).results.language_prediction.probability
 }
