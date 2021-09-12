@@ -8,7 +8,7 @@ fn main()
     let arg: String = args[1].parse().expect("invalid account");
     
     if info::get_success(&arg) {
-	println!("You have successfully connected to Intellivoid database!\n");
+	println!("You have successfully connected to Intellivoid API!\n");
     } else {
 	println!("This entity is not in Intellivoid database or there may be a problem with the API at this moment.");
 	process::exit(1);
