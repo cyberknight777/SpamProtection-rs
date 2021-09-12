@@ -169,3 +169,7 @@ pub fn get_lang<T: std::fmt::Display + serde::Serialize>(user: T) ->  Option<Str
 pub fn get_lang_probability<T: std::fmt::Display + serde::Serialize>(user: T) -> Option<f64> {
     return full(user).results.language_prediction.probability
 }
+
+pub fn get_ptid<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
+    return full(user).results.private_telegram_id
+}
