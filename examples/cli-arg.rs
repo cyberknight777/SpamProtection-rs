@@ -10,7 +10,7 @@ fn main()
     if info::get_success(&arg) {
 	println!("You have successfully connected to Intellivoid database!\n");
     } else {
-	println!("This {} is not in Intellivoid database or there may be a problem with the API at this moment.", info::get_type(&arg));
+	println!("This entity is not in Intellivoid database or there may be a problem with the API at this moment.");
 	process::exit(1);
     }
 
