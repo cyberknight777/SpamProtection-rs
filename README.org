@@ -1,5 +1,7 @@
 #+TITLE: SpamProtection-rs
 
+#+HTML: <p align="center"><img width="460" height="300" src="./.github/logo.png"></p>
+
 * Table of contents
 :PROPERTIES:
 :TOC:
