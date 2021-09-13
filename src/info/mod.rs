@@ -88,91 +88,47 @@ pub fn get_potential<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
  */
 
 pub fn get_flag_evade<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xEVADE" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xEVADE"
 }
 
 pub fn get_flag_spam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xSPAM" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xSPAM"
 }
 
 pub fn get_flag_scam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xSCAM" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xSCAM"
 }
 
 pub fn get_flag_cacp<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xCACP" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xCACP"
 }
 
 pub fn get_flag_sp<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xSP" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xSP"
 }
 
 pub fn get_flag_piracy<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xPIRACY" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xPIRACY"
 }
 
 pub fn get_flag_namespam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xNAMESPAM" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xNAMESPAM"
 }
 
 pub fn get_flag_massadd<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xMASSADD" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xMASSADD"
 }
 
 pub fn get_flag_imper<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xIMPER" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xIMPER"
 }
 
 pub fn get_flag_raid<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xRAID" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xRAID"
 }
 
 pub fn get_flag_private<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if get_flag(user) == "0xPRIVATE" {
-        return true;
-    } else {
-        return false;
-    }
+    get_flag(user) == "0xPRIVATE"
 }
 
 pub fn get_spam_predict<T: std::fmt::Display + serde::Serialize>(user: T) -> f64 {
