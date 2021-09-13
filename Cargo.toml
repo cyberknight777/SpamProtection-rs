@@ -5,7 +5,7 @@ edition = "2018"
 description = "A rust wrapper for the SpamProtection API"
 license = "GPL-3.0"
 repository = "https://github.com/cyberknight777/spamprotection-rs"
-readme = "README.org"
+readme = "cratesio.md"
 authors = ["@PeroSar <perosar1111@gmail.com>", "@cyberknight777 <cyberknight755@gmail.com>"]
 
 [dependencies]
