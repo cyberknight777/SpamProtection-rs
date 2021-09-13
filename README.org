@@ -23,7 +23,7 @@ This wrapper was made in focus of speed, reliability and memory safety.
 
 * Supported Rust version
 
-At the time of development we used rustc version 1.52.1. Anything newer than this should work fine with the library unless if there were any syntax breaking changes included in future rust updates in which we will update our code to the latest standards.
+At the time of development we used rustc version 1.53.0. Anything newer than this should work fine with the library unless if there were any syntax breaking changes included in future rust updates in which we will update our code to the latest standards.
 
 * Features
   
@@ -43,7 +43,7 @@ At the time of development we used rustc version 1.52.1. Anything newer than thi
 
 #+BEGIN_SRC toml
 [dependencies]
-spamprotection = "0.1.0"
+spamprotection = "0.1.0-1"
 #+END_SRC
 
 ** Here's an example of how you can use the spamprotection library in your code
