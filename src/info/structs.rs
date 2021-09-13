@@ -1,5 +1,11 @@
 use serde::Deserialize;
 
+/* After importing serde to deserialize the JSON output, we move on to declaring the structs.
+ * We took care of implementing the right types depending on the attributes.
+ * There are some types which return null if a non-existent entity is passed.
+ * We took care of this by using the Option<T> type in rust.
+ */
+
 #[derive(Deserialize, Debug, Default)]
 pub struct Response {
     pub private_telegram_id: String,

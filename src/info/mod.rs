@@ -1,6 +1,9 @@
 mod structs;
 use structs::ApiResp;
 
+/*  Now that we have declared the structs.rs file to be loaded as a rust module, We will move on to declaring the full() method.
+ *  What this full() method essentially does is that it makes the initial POST request to the API using the reqwest library with a form called query with its value  *   *  being the userID/username/PTID provided by the user of the library. The json output is also parsed with serde and the Display trait is applied for cleaner output.
+ */
 pub fn full<T: std::fmt::Display + serde::Serialize>(user: T) -> ApiResp {
     return reqwest::blocking::Client::new()
         .post("https://api.intellivoid.net/spamprotection/v1/lookup")
@@ -11,6 +14,9 @@ pub fn full<T: std::fmt::Display + serde::Serialize>(user: T) -> ApiResp {
         .json::<ApiResp>()
         .unwrap();
 }
+
+/* Here's where we start declaring the other methods for ease of use to get information easily. Like for example, instead of info.results.entity_type, one can simply do * info::get_type
+ */
 
 pub fn get_flag<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
     return full(user)
@@ -75,6 +81,11 @@ pub fn get_reason<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
 pub fn get_potential<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
     return full(user).results.attributes.is_potential_spammer;
 }
+
+/* Now here we start declaring methods for specific blacklist flags.
+ * This makes it simpler to check if a user is blacklisted with a specific flag or not.
+ * Note that we manually make an if expression to parse the output and return the boolean values.
+ */
 
 pub fn get_flag_evade<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
     if get_flag(user) == "0xEVADE" {
