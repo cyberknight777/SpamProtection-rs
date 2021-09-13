@@ -65,13 +65,13 @@ spamprotection = "0.1.0"
 
 	 let info = info::full(123456789);
 
-      */
+      ,*/
 
      /*
      You can also use a private_telegram_id (PTID) to get info
      Example:
      info::full("TEL-9b7ef46a550112edea3ba46220283b1bfd8feddd09b26888524ef7245947e97f-b105a169");
-     */
+     ,*/
 
 
       let args: Vec<String> = env::args().collect();
@@ -99,10 +99,11 @@ spamprotection = "0.1.0"
 	  println!("Beware! This {} is a potential spammer!!", info::get_type(&arg));
       }
 
-    /* You can also alternatively use the full() method in info module
-       This is however tedious and not suggested.
+    /* It is wise to use the full() method in info module as it does 1 request and you can parse the information manually from there.
+       That however is faster yet tedious to use if you're looking for one particular info.
+       Using each method separately however can waste more time as it does a request per method.
        info has several fields and subfields, You can check what are they in the src/info/structs/mod.rs
-    */
+    ,*/
     //let info = info::full(&arg);
 
     // println!("{:#?}", info);
