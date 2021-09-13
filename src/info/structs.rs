@@ -7,7 +7,7 @@ pub struct Response {
     pub attributes: Attributes,
     pub language_prediction: LangPredict,
     pub spam_prediction: SpamPredict,
-    pub last_updated: i128
+    pub last_updated: i128,
 }
 
 #[derive(Deserialize, Debug, Default)]
@@ -27,13 +27,13 @@ pub struct Attributes {
 #[derive(Deserialize, Debug, Default)]
 pub struct LangPredict {
     pub language: Option<String>,
-    pub probability: Option<f64>
+    pub probability: Option<f64>,
 }
 
 #[derive(Deserialize, Debug, Default)]
 pub struct SpamPredict {
     pub ham_prediction: Option<f64>,
-    pub spam_prediction: Option<f64>
+    pub spam_prediction: Option<f64>,
 }
 
 #[derive(Deserialize, Debug, Default)]
