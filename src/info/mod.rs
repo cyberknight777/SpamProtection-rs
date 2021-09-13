@@ -64,7 +64,7 @@ pub fn get_potential<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
 }
 
 pub fn get_flag_evade<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xEVADE" {
+    if get_flag(user) == "0xEVADE" {
 	return true;
     } else {
 	return false;
@@ -72,7 +72,7 @@ pub fn get_flag_evade<T: std::fmt::Display + serde::Serialize>(user: T) -> bool 
 }
 
 pub fn get_flag_spam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xSPAM" {
+    if get_flag(user) == "0xSPAM" {
 	return true;
     } else {
 	return false;
@@ -80,7 +80,7 @@ pub fn get_flag_spam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
 }
 
 pub fn get_flag_scam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xSCAM" {
+    if get_flag(user) == "0xSCAM" {
 	return true;
     } else {
 	return false;
@@ -89,7 +89,7 @@ pub fn get_flag_scam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
 
 
 pub fn get_flag_cacp<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xCACP" {
+    if get_flag(user) == "0xCACP" {
 	return true;
     } else {
 	return false;
@@ -97,7 +97,7 @@ pub fn get_flag_cacp<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
 }
 
 pub fn get_flag_sp<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xSP" {
+    if get_flag(user) == "0xSP" {
 	return true;
     } else {
 	return false;
@@ -105,7 +105,7 @@ pub fn get_flag_sp<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
 }
 
 pub fn get_flag_piracy<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xPIRACY" {
+    if get_flag(user) == "0xPIRACY" {
 	return true;
     } else {
 	return false;
@@ -113,7 +113,7 @@ pub fn get_flag_piracy<T: std::fmt::Display + serde::Serialize>(user: T) -> bool
 }
 
 pub fn get_flag_namespam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xNAMESPAM" {
+    if get_flag(user) == "0xNAMESPAM" {
 	return true;
     } else {
 	return false;
@@ -121,7 +121,7 @@ pub fn get_flag_namespam<T: std::fmt::Display + serde::Serialize>(user: T) -> bo
 }
 
 pub fn get_flag_massadd<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xMASSADD" {
+    if get_flag(user) == "0xMASSADD" {
 	return true;
     } else {
 	return false;
@@ -129,7 +129,7 @@ pub fn get_flag_massadd<T: std::fmt::Display + serde::Serialize>(user: T) -> boo
 }
 
 pub fn get_flag_imper<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xIMPER" {
+    if get_flag(user) == "0xIMPER" {
 	return true;
     } else {
 	return false;
@@ -137,7 +137,7 @@ pub fn get_flag_imper<T: std::fmt::Display + serde::Serialize>(user: T) -> bool 
 }
 
 pub fn get_flag_raid<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xRAID" {
+    if get_flag(user) == "0xRAID" {
 	return true;
     } else {
 	return false;
@@ -145,7 +145,7 @@ pub fn get_flag_raid<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
 }
 
 pub fn get_flag_private<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    if full(user).results.attributes.blacklist_flag.unwrap_or("None".to_string()) == "0xPRIVATE" {
+    if get_flag(user) == "0xPRIVATE" {
 	return true;
     } else {
 	return false;
