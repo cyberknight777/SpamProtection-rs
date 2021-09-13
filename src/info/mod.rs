@@ -5,86 +5,86 @@ use structs::ApiResp;
  *  What this full() method essentially does is that it makes the initial POST request to the API using the reqwest library with a form called query with its value  *   *  being the userID/username/PTID provided by the user of the library. The json output is also parsed with serde and the Display trait is applied for cleaner output.
  */
 pub fn full<T: std::fmt::Display + serde::Serialize>(user: T) -> ApiResp {
-    return reqwest::blocking::Client::new()
+    reqwest::blocking::Client::new()
         .post("https://api.intellivoid.net/spamprotection/v1/lookup")
         .header("User-Agent", "SpamProtectionBot-rs")
         .form(&[("query", user)])
         .send()
         .unwrap()
         .json::<ApiResp>()
-        .unwrap();
+        .unwrap()
 }
 
 /* Here's where we start declaring the other methods for ease of use to get information easily. Like for example, instead of info.results.entity_type, one can simply do * info::get_type
  */
 
 pub fn get_flag<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    return full(user)
+    full(user)
         .results
         .attributes
         .blacklist_flag
-        .unwrap_or("None".to_string());
+        .unwrap_or("None".to_string())
 }
 
 pub fn get_success<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    return full(user).success;
+    full(user).success
 }
 
 pub fn get_resp<T: std::fmt::Display + serde::Serialize>(user: T) -> i16 {
-    return full(user).response_code;
+    full(user).response_code
 }
 
 pub fn get_bl<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    return full(user).results.attributes.is_blacklisted;
+    full(user).results.attributes.is_blacklisted
 }
 
 pub fn get_type<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    return full(user).results.entity_type;
+    full(user).results.entity_type
 }
 
 pub fn get_original_ptid<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    return full(user)
+    full(user)
         .results
         .attributes
         .original_private_id
-        .unwrap_or("None".to_string());
+        .unwrap_or("None".to_string())
 }
 
 pub fn get_user_verified<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    return full(user).results.attributes.intellivoid_accounts_verified;
+    full(user).results.attributes.intellivoid_accounts_verified
 }
 
 pub fn get_user_operator<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    return full(user).results.attributes.is_operator;
+    full(user).results.attributes.is_operator
 }
 
 pub fn get_user_agent<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    return full(user).results.attributes.is_agent;
+    full(user).results.attributes.is_agent
 }
 
 pub fn get_user_whitelisted<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    return full(user).results.attributes.is_whitelisted;
+    full(user).results.attributes.is_whitelisted
 }
 
 pub fn get_user_official<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    return full(user).results.attributes.is_official;
+    full(user).results.attributes.is_official
 }
 
 pub fn get_reason<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    return full(user)
+    full(user)
         .results
         .attributes
         .blacklist_reason
-        .unwrap_or("None".to_string());
+        .unwrap_or("None".to_string())
 }
 
 pub fn get_potential<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    return full(user).results.attributes.is_potential_spammer;
+    full(user).results.attributes.is_potential_spammer
 }
 
 /* Now here we start declaring methods for specific blacklist flags.
  * This makes it simpler to check if a user is blacklisted with a specific flag or not.
- * Note that we manually make an if expression to parse the output and return the boolean values.
+ * Note that we manually make an if expression to parse the output and the boolean values.
  */
 
 pub fn get_flag_evade<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
@@ -132,37 +132,38 @@ pub fn get_flag_private<T: std::fmt::Display + serde::Serialize>(user: T) -> boo
 }
 
 pub fn get_spam_predict<T: std::fmt::Display + serde::Serialize>(user: T) -> f64 {
-    return full(user)
+    full(user)
         .results
         .spam_prediction
         .spam_prediction
-        .unwrap_or(0.0);
+        .unwrap_or(0.0)
 }
 
 pub fn get_ham_predict<T: std::fmt::Display + serde::Serialize>(user: T) -> f64 {
-    return full(user)
+    full(user)
         .results
         .spam_prediction
         .ham_prediction
-        .unwrap_or(0.0);
+        .unwrap_or(0.0)
+
 }
 
 pub fn get_lang<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    return full(user)
+    full(user)
         .results
         .language_prediction
         .language
-        .unwrap_or("None".to_string());
+        .unwrap_or("None".to_string())
 }
 
 pub fn get_lang_probability<T: std::fmt::Display + serde::Serialize>(user: T) -> f64 {
-    return full(user)
+    full(user)
         .results
         .language_prediction
         .probability
-        .unwrap_or(0.0);
+        .unwrap_or(0.0)
 }
 
 pub fn get_ptid<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    return full(user).results.private_telegram_id;
+    full(user).results.private_telegram_id
 }
