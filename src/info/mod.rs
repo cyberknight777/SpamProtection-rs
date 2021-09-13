@@ -2,15 +2,13 @@ mod structs;
 use structs::ApiResp;
 
 pub fn full<T: std::fmt::Display + serde::Serialize>(user: T) ->  ApiResp {
-    let client = reqwest::blocking::Client::new();
-    let response = client.post("https://api.intellivoid.net/spamprotection/v1/lookup")
+    return reqwest::blocking::Client::new().post("https://api.intellivoid.net/spamprotection/v1/lookup")
         .header("User-Agent", "SpamProtectionBot-rs")
         .form(&[("query", user)])
         .send()
         .unwrap()
         .json::<ApiResp>()
         .unwrap();
-    return response
 }
 
 pub fn get_flag<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
