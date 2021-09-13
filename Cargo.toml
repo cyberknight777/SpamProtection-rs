@@ -1,6 +1,6 @@
 [package]
 name = "spamprotection"
-version = "0.1.0"
+version = "0.1.0-1"
 edition = "2018"
 description = "A rust wrapper for the SpamProtection API"
 license = "GPL-3.0"
