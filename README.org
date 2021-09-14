@@ -46,6 +46,13 @@ At the time of development we used rustc version 1.53.0. Anything newer than thi
 spamprotection = "0.1.0-2"
 #+END_SRC
 
+** You can also use the git version of our library for newer improvements
+
+#+BEGIN_SRC toml
+[dependencies]
+spamprotection = { git = "https://github.com/cyberknight777/spamprotection-rs" }
+#+END_SRC
+
 ** Here's an example of how you can use the spamprotection library in your code
 
 #+BEGIN_SRC rust
