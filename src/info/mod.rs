@@ -15,155 +15,94 @@ pub fn full<T: std::fmt::Display + serde::Serialize>(user: T) -> ApiResp {
         .unwrap()
 }
 
-/* Here's where we start declaring the other methods for ease of use to get information easily. Like for example, instead of info.results.entity_type, one can simply do * info::get_type
+/* Here's where we start declaring the other methods for ease of use to get information easily. Like for example, instead of info.results.entity_type, one can simply do * info.get_type()
  */
-
-pub fn get_flag<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    full(user)
-        .results
-        .attributes
-        .blacklist_flag
-        .unwrap_or("None".to_string())
-}
-
-pub fn get_success<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    full(user).success
-}
-
-pub fn get_resp<T: std::fmt::Display + serde::Serialize>(user: T) -> i16 {
-    full(user).response_code
-}
-
-pub fn get_bl<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    full(user).results.attributes.is_blacklisted
-}
-
-pub fn get_type<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    full(user).results.entity_type
-}
-
-pub fn get_original_ptid<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    full(user)
-        .results
-        .attributes
-        .original_private_id
-        .unwrap_or("None".to_string())
-}
-
-pub fn get_user_verified<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    full(user).results.attributes.intellivoid_accounts_verified
-}
-
-pub fn get_user_operator<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    full(user).results.attributes.is_operator
-}
-
-pub fn get_user_agent<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    full(user).results.attributes.is_agent
-}
-
-pub fn get_user_whitelisted<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    full(user).results.attributes.is_whitelisted
-}
-
-pub fn get_user_official<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    full(user).results.attributes.is_official
-}
-
-pub fn get_reason<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    full(user)
-        .results
-        .attributes
-        .blacklist_reason
-        .unwrap_or("None".to_string())
-}
-
-pub fn get_potential<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    full(user).results.attributes.is_potential_spammer
-}
-
-/* Now here we start declaring methods for specific blacklist flags.
- * This makes it simpler to check if a user is blacklisted with a specific flag or not.
- * Note that we manually make an if expression to parse the output and the boolean values.
- */
-
-pub fn get_flag_evade<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xEVADE"
-}
-
-pub fn get_flag_spam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xSPAM"
-}
-
-pub fn get_flag_scam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xSCAM"
-}
-
-pub fn get_flag_cacp<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xCACP"
-}
-
-pub fn get_flag_sp<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xSP"
-}
-
-pub fn get_flag_piracy<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xPIRACY"
-}
-
-pub fn get_flag_namespam<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xNAMESPAM"
-}
-
-pub fn get_flag_massadd<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xMASSADD"
-}
-
-pub fn get_flag_imper<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xIMPER"
-}
-
-pub fn get_flag_raid<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xRAID"
-}
-
-pub fn get_flag_private<T: std::fmt::Display + serde::Serialize>(user: T) -> bool {
-    get_flag(user) == "0xPRIVATE"
-}
-
-pub fn get_spam_predict<T: std::fmt::Display + serde::Serialize>(user: T) -> f64 {
-    full(user)
-        .results
-        .spam_prediction
-        .spam_prediction
-        .unwrap_or(0.0)
-}
-
-pub fn get_ham_predict<T: std::fmt::Display + serde::Serialize>(user: T) -> f64 {
-    full(user)
-        .results
-        .spam_prediction
-        .ham_prediction
-        .unwrap_or(0.0)
-
-}
-
-pub fn get_lang<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    full(user)
-        .results
-        .language_prediction
-        .language
-        .unwrap_or("None".to_string())
-}
-
-pub fn get_lang_probability<T: std::fmt::Display + serde::Serialize>(user: T) -> f64 {
-    full(user)
-        .results
-        .language_prediction
-        .probability
-        .unwrap_or(0.0)
-}
-
-pub fn get_ptid<T: std::fmt::Display + serde::Serialize>(user: T) -> String {
-    full(user).results.private_telegram_id
+impl ApiResp {
+    pub fn get_bl(&self) -> bool {
+        self.results.attributes.is_blacklisted
+    }
+    pub fn get_success(&self) -> bool {
+        self.success
+    }
+    pub fn get_resp_code(&self) -> i16 {
+        self.response_code
+    }
+    pub fn get_ptid(&self) -> String {
+    self.results.private_telegram_id.clone()
+    }
+    pub fn get_type(&self) -> String {
+        self.results.entity_type.clone()
+    }
+    pub fn get_original_ptid(&self) -> String {
+        self.results.attributes.original_private_id.clone().unwrap_or("None".to_string())
+    }
+    pub fn get_flag(&self) -> String {
+        self.results.attributes.blacklist_flag.clone().unwrap_or("None".to_string())
+    }
+    pub fn get_verified(&self) -> bool {
+        self.results.attributes.intellivoid_accounts_verified
+    }
+    pub fn get_operator(&self) -> bool {
+        self.results.attributes.is_operator
+    }
+    pub fn ger_agent(&self) -> bool {
+        self.results.attributes.is_agent
+    }
+    pub fn get_user_whitelisted(&self) -> bool {
+        self.results.attributes.is_whitelisted
+    }
+    pub fn get_official(&self) -> bool {
+        self.results.attributes.is_official
+    }
+    pub fn get_bl_reason(&self) -> String {
+        self.results.attributes.blacklist_reason.clone().unwrap_or("None".to_string())
+    }
+    pub fn get_potential(&self) -> bool {
+        self.results.attributes.is_potential_spammer
+    }
+    pub fn get_flag_evade(&self) -> bool {
+        self.get_flag() == "0xEVADE"        
+    }
+    pub fn get_flag_spam(&self) -> bool {
+        self.get_flag() == "0xSPAM"
+    }
+    pub fn get_flag_scam(&self) -> bool {
+        self.get_flag() == "0xSCAM"
+    }
+    pub fn get_flag_cacp(&self) -> bool {
+        self.get_flag() == "0xCACP"
+    }
+    pub fn get_flag_sp(&self) -> bool {
+        self.get_flag() == "0xSP"
+    }
+    pub fn get_flag_piracy(&self) -> bool {
+        self.get_flag() == "0xPIRACY"
+    }
+    pub fn get_flag_namespam(&self) -> bool {
+        self.get_flag() == "0xNAMESPAM"
+    }
+    pub fn get_flag_imper(&self) -> bool {
+        self.get_flag() == "0xIMPER"
+    }
+    pub fn get_flag_raid(&self) -> bool {
+        self.get_flag() == "0xRAID"
+    }
+    pub fn get_flag_massadd(&self) -> bool {
+        self.get_flag() == "0xMASSADD"
+    }
+    pub fn get_flag_private(&self) -> bool {
+        self.get_flag() == "0xPRIVATE"
+    }
+    pub fn get_spam_predict(&self) -> f64 {
+        self.results.spam_prediction.spam_prediction.clone().unwrap_or(0.0)
+    }
+    pub fn get_ham_predict(&self) -> f64 {
+        self.results.spam_prediction.ham_prediction.clone().unwrap_or(0.0)
+    }
+    pub fn get_lang(&self) -> String {
+        self.results.language_prediction.language.clone().unwrap_or("None".to_string())
+    }
+    pub fn get_lang_probabiility(&self) -> f64 {
+        self.results.language_prediction.probability.clone().unwrap_or(0.0)
+    }
 }

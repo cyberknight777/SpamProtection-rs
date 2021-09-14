@@ -54,7 +54,7 @@ spamprotection = "0.1.0-1"
 
   /* We would need to first to declare the spamprotection library with use declaration.
      We would also need to declare the env trait from std library as args variable will be collecting the arguments passed to the program.
-  ,*/
+  */
 
   fn main()
   {
@@ -65,7 +65,7 @@ spamprotection = "0.1.0-1"
 
 	 let info = info::full(123456789);
 
-      ,*/
+      */
 
      /*
      You can also use a private_telegram_id (PTID) to get info
@@ -81,32 +81,23 @@ spamprotection = "0.1.0-1"
 	 which calls the full() method with given the arg variable as the value.
 
 	 info has several fields and subfields, in the below example we would be using .results and its subtype .results.attributes.
-      ,*/
+      */
       let info = info::full(arg);
 
       // You can check if the user is blacklisted or not via this!
 
-
-      if info::get_bl(&arg) {
-	  println!("This {} is blacklisted due to {} with the {} flag.\n", info::get_type(&arg), info::get_reason(&arg), info::get_flag(&arg));
+      if info.get_bl() {
+	  println!("This {} is blacklisted due to {} with the {} flag.\n", info.get_type(), info.get_bl_reason(), info.get_flag());
       } else {
-	  println!("This {} is not blacklisted!\n", info::get_type(&arg));
+	  println!("This {} is not blacklisted!\n", info.get_type());
       }
 
       // You can also check if the user is a potential scammer or not!
 
-      if info::get_potential(&arg) {
-	  println!("Beware! This {} is a potential spammer!!", info::get_type(&arg));
+      if info.get_potential() {
+	  println!("Beware! This {} is a potential spammer!!", info.get_type());
       }
 
-    /* It is wise to use the full() method in info module as it does 1 request and you can parse the information manually from there.
-       That however is faster yet tedious to use if you're looking for one particular info.
-       Using each method separately however can waste more time as it does a request per method.
-       info has several fields and subfields, You can check what are they in the src/info/structs/mod.rs
-    ,*/
-    //let info = info::full(&arg);
-
-    // println!("{:#?}", info);
 
 #+END_SRC
 

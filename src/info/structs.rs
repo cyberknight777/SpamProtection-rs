@@ -6,7 +6,7 @@ use serde::Deserialize;
  * We took care of this by using the Option<T> type in rust.
  */
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct Response {
     pub private_telegram_id: String,
     pub entity_type: String,
@@ -16,7 +16,7 @@ pub struct Response {
     pub last_updated: i128,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct Attributes {
     pub is_blacklisted: bool,
     pub blacklist_flag: Option<String>,
@@ -30,26 +30,26 @@ pub struct Attributes {
     pub is_official: bool,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct LangPredict {
     pub language: Option<String>,
     pub probability: Option<f64>,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct SpamPredict {
     pub ham_prediction: Option<f64>,
     pub spam_prediction: Option<f64>,
 }
 
-#[derive(Deserialize, Debug, Default)]
+#[derive(Deserialize, Debug, Default, Clone)]
 pub struct Error {
     pub error_code: i8,
     pub r#type: String,
     pub message: String,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct ApiResp {
     #[serde(default)]
     pub error: Error,
