@@ -17,6 +17,8 @@
 
 * About
 
+This repo has been shifted to the official org of [[https://github.com/intellivoid/spamprotection-rust][Intellivoid]].
+
 SpamProtection-rs is a [[https://rust-lang.org][Rust]] wrapper for [[https://intellivoid.net][Intellivoid]] SpamProtection API which uses the [[https://crates.io/crates/reqwest][Reqwest]] library to make the request and [[https://crates.io/crates/serde][serde]] to parse the json output.
 
 This wrapper was made in focus of speed, reliability and memory safety.
